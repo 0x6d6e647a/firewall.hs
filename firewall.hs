@@ -105,3 +105,10 @@ outputChain = [ [setChainPolicy Output Drop]
               ++ [[chainAppend Output, logPacket "(OUT)DROP "]]
 
 forwardChain = [ [setChainPolicy Forward Drop] ]
+
+--------------------------------------------------------------------------------
+-- Main Function
+--------------------------------------------------------------------------------
+main :: IO()
+main = do putStrLn rules where
+    rules  = unlines $ map mkIptablesCmd $ inputChain ++ outputChain ++ forwardChain
